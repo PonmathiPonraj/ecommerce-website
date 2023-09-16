@@ -1,58 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import CartModal from './Components/UI/CartModal';
+import './App.css';
 import Resource from './Components/Resource';
+import CartProvider from './store/CartProvider';
+import CartButton from './Components/Cart/CartButton'; // Import the CartButton component
+import CartContext from './store/CartContext';
 
 function App() {
-  const initialCart = [
-    {
-      title: 'Colors',
-      price: 100,
-      imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-      quantity: 2,
-    },
-
-    {
-      title: 'Black and white Colors',
-      price: 50,
-      imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-      quantity: 3,
-    },
-
-    {
-      title: 'Yellow and Black Colors',
-      price: 70,
-      imageUrl:
-        'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-      quantity: 1,
-    },
-
-  ];
-
-  const [cartItems, setCartItems] = useState(initialCart);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const handleRemoveItem = (title) => {
-    const updatedCart = cartItems.filter((item) => item.title !== title);
-    setCartItems(updatedCart);
-  };
+  const cartCtx=useContext(CartContext);
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
 
+  const handleRemoveItem = (itemTitle) => {
+    cartCtx.removeItem(itemTitle); // Call the removeItem function from context
+  };
+
   return (
-    <div>
-      <button onClick={toggleCart}>
-        Cart
-      </button>
+    <CartProvider>
+      <div className='align-right'>
+        <CartButton onClick={toggleCart} /> {/* Use the CartButton component */}
+      </div>
       {isCartOpen && (
         <CartModal
-          cartItems={cartItems}
-          onRemoveItem={handleRemoveItem}
-          onClose={toggleCart}
+          cartItems={cartCtx.items}
+          onRemoveItem={handleRemoveItem} // Pass the remove item function
         />
       )}
-      <Resource />
-    </div>
+      <Resource isCartOpen={isCartOpen}/>
+    </CartProvider>
   );
 };
 
