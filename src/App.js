@@ -4,10 +4,10 @@ import Resourse from './Components/Resource';
 
 function App() {
   return (
-    <div>
-      <Resourse/>
+    <div className="App">
+      <Resource />
     </div>
   );
-};
+}
 
 export default App;
