@@ -10,6 +10,7 @@ const CartModal = (props) => {
                     X
                 </button>
                 <h2>Your Cart</h2>
+                {/* Pass the required props to the Cart component */}
                 <Cart cartItems={props.cartItems} onRemoveItem={props.onRemoveItem} />
             </div>
         </div>
