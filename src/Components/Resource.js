@@ -28,7 +28,7 @@ const productsArr = [
     }
 ]
 
-const Resource = () => {
+const Resource = (props) => {
     const cartCtx = useContext(CartContext);
     const [isItemAdded, setIsItemAdded] = useState(false);
 
