@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import CartModal from '../Components/UI/CartModal';
-import Resource from '../Components/Resource';
+import CartModal from '../components/UI/CartModal';
+import Resource from '../components/Resource';
 import CartProvider from '../store/CartProvider';
-import CartButton from '../Components/Cart/CartButton';
+import CartButton from '../components/Cart/CartButton';
 import CartContext from '../store/CartContext';
 
-const ResourceWithCartButton=()=>{
+const Product = () => {
     const [isCartOpen, setIsCartOpen] = useState(false);
     const cartCtx = useContext(CartContext);
 
@@ -30,4 +30,4 @@ const ResourceWithCartButton=()=>{
     );
 };
 
-export default ResourceWithCartButton;
+export default Product;
