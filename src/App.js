@@ -1,41 +1,26 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import MainHeader from './Links/MainHeader';
+import HomePage from './Pages/HomePage';
 import StorePage from './Pages/StorePage';
 import AboutPage from './Pages/AboutPage';
-import HomePage from './Pages/HomePage';
-import MainHeader from './Links/MainHeader';
 import ContactPage from './Pages/ContactPage';
+import ProductDetail from './Product/ProductDetail';
 
-const App=()=>{
-
-  // const router=createBrowserRouter([
-  //   {path:'/',element:<Root/>,children:[
-  //     {path:'/About',element:<AboutPage />},
-  //      {path:'/Store',element:<StorePage />},
-  //      {path:'/',element:<HomePage />},
-  //   ]}
-
-
-  //    ])
+const App = () => {
   return (
-    //<RouterProvider router={router}/>
-    <div>
-      <MainHeader/>
-      <main>
-        <Route path="/home">
-          <HomePage/>
-        </Route>
-        <Route path="/store">
-          <StorePage/>
-        </Route>
-        <Route path="/about">
-          <AboutPage/>
-        </Route>
-        <Route path="/contact">
-          <ContactPage/>
-        </Route>
-      </main>
-    </div>
+    <Router>
+      <div>
+        <MainHeader />
+        <main>
+          <Route path="/home" component={HomePage} />
+          <Route path="/store" component={StorePage} />
+          <Route path="/about" component={AboutPage} />
+          <Route path="/contact" component={ContactPage} />
+          <Route path="/product/:productId" component={ProductDetail} /> {/* Dynamic route */}
+        </main>
+      </div>
+    </Router>
   );
 };
 
